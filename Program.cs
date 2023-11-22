@@ -19,39 +19,39 @@ class Program
 
     static async Task Main()
     {
-        //if ( !File.Exists( "output.json" ) ) //For preventing executing the script twice if something fails with mirroring
-        //    await RunPythonScriptAsync();
+        if ( !File.Exists( "output.json" ) ) //For preventing executing the script twice if something fails with mirroring
+            await RunPythonScriptAsync();
 
-        //var result = await GetResultAsync();
+        var result = await GetResultAsync();
 
-        //var successProjects = result.Success;
-        //var errorProjects = result.Error;
+        var successProjects = result.Success;
+        var errorProjects = result.Error;
 
-        //IWebDriver driver = new ChromeDriver();
-        //WebDriverWait wait = new WebDriverWait( driver, TimeSpan.FromSeconds( 10 ) );
+        IWebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait( driver, TimeSpan.FromSeconds( 10 ) );
 
-        //await SeleniumLogin( driver, wait );
+        await SeleniumLogin( driver, wait );
 
-        //errorProjects?.ForEach( project =>
-        //{
-        //    Console.WriteLine( $"Project {project.Name} ERROR CREATING PROJECT" );
-        //} );
+        errorProjects?.ForEach( project =>
+        {
+            Console.WriteLine( $"Project {project.Name} ERROR CREATING PROJECT" );
+        } );
 
-        //Console.WriteLine();
+        Console.WriteLine();
 
-        //successProjects?.ForEach( project =>
-        //{
-        //    Console.WriteLine( $"Project {project.Name} CREATED" );
-        //} );
+        successProjects?.ForEach( project =>
+        {
+            Console.WriteLine( $"Project {project.Name} CREATED" );
+        } );
 
-        //Console.WriteLine();
+        Console.WriteLine();
 
-        //foreach ( var project in successProjects ?? new() )
-        //{
-        //    await SeleniumMirroringAsync( driver, wait, project );
-        //}
+        foreach ( var project in successProjects ?? new() )
+        {
+            await SeleniumMirroringAsync( driver, wait, project );
+        }
 
-        //driver.Quit();
+        driver.Quit();
 
         Console.WriteLine( "Press any key to exit..." );
         Console.ReadKey();
